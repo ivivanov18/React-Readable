@@ -31,7 +31,7 @@ const Post = ({
                         onClick={() => onClickDeleteButton({id})}>Delete</button>
                 <button type="button" 
                             class="btn btn-primary">
-                       <Link to="/create/post" class="btn btn-primary">Add Comment</Link>
+                       <Link to="/create/comment" class="btn btn-primary">Add Comment</Link>
                 </button>
                 <button type="button" 
                         class="btn btn-primary"

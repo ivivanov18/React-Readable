@@ -14,7 +14,7 @@ class PostAdd extends Component{
         e.preventDefault();
         
         const postData = {
-            id: ++this.nextId,
+            id: (++this.nextId).toString(),
             title: e.target.title.value,
             body: e.target.body.value,
             author: e.target.author.value,

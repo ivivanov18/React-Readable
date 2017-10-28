@@ -7,7 +7,7 @@ import PostList from './components/PostList';
 import CategoryList from './components/CategoryList';
 import PostAdd from './components/PostAdd';
 import PostDetail from './components/PostDetail';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 
 /**
  * 
@@ -180,4 +180,4 @@ const mapStateToProps = ({posts, comments, categories, categoryFilter}) => {
 /*App.contextTypes = {
   store: PropTypes.object
 }*/
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

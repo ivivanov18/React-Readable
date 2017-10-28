@@ -5,6 +5,7 @@ import Post from './Post';
 import CommentList from './CommentList';
 import CommentAdd from './CommentAdd';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 
 

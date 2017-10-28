@@ -20,7 +20,7 @@ const Category = ({
     return(
         <Link   key={category.name}
                 to={`/${category.path}`}
-                class="list-group-item list-group-item-action"
+                className="list-group-item list-group-item-action"
                 onClick={() => onClick(category.name)}>
             {   category.name}
         </Link>

@@ -6,10 +6,8 @@ X Add Link on title to go to PostDetail detail with comments --> Added but does 
 X Check when creating post that fields are not blank
 X Sort function by date added and vote Score
 X PostDetail does not work when clicked must be refreshed F5!!
+X Number of Comments on post detail
 V Same for upvote and downvote post
-V make one link for ALL categories --> dispatch action
-V When post created and added --> call ServerAPI to create on Server
-V Delete posts reflect on backend server
 
 
 
