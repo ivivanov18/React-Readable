@@ -22,6 +22,26 @@ const defaultData = {
     voteScore: -5,
     deleted: false,
     parentDeleted: false
+  },
+  "8tu4bsun805n8un48ve89qwer": {
+    id: '8tu4bsun805n8un48ve89qwer',
+    parentId: "8xf0y6ziyjabvozdd253nd",
+    timestamp: 1234579767190,
+    body: 'Comments. Are. Cool.',
+    author: 'thingone',
+    voteScore: 100,
+    deleted: false,
+    parentDeleted: false
+  },
+  "8tu4bsun805n8un48rtyu": {
+    id: '8tu4bsun805n8un48rtyu',
+    parentId: "6ni6ok3ym7mf1p33lnez",
+    timestamp: 1549479567190,
+    body: 'Comments. Really Are. Very Cool.',
+    author: 'ivan',
+    voteScore: 10,
+    deleted: false,
+    parentDeleted: false
   }
 }
 

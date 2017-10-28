@@ -1,0 +1,73 @@
+Components
+  App
+  AddPost
+  PostList
+  FilterCategories
+  AddComment
+  CommentList
+
+List of state and actions
+-------------------------
+- COMPONENT AddPost
+-------------------
+  - State: N/A Fields and a button and their display does not change based on any
+  data
+
+  - ACTIONS (events)
+    1 - AddPost allows us to create a new Post item by listening to DOM events
+    and by reading the data from the input fields
+    This event is mapped to a JSON object called action
+    The action AddPost is described by creating a JSON object with a type
+    ADD_POST and adding the data like
+    {
+    type: ADD_POST,
+    payload: {id, title, body, category, timestamp, author}
+    }
+
+
+- COMPONENT PostList
+--------------------
+  - STATE
+    1 - Posts arrays
+    2 - CategoryFilter this tells which category of posts is shown/hidden. It
+    comes from FilterCategories component
+
+  - ACTIONS
+  The component has no actions
+
+
+- COMPONENT FilterCategories
+----------------------------
+  - STATE
+  1 - CurrentCategory: A string that tells which category to display active (simple
+  text) v/s which ones to show as clickable link. For "All" "react".
+
+  - ACTIONS
+  The filter component has only one action. It simply listens to user clicks on category
+  links and tells others component which was clicked.
+
+  The action is described
+  {type: "SET_CATEGORY_FILTER,
+  payload: {filter: "ALL"}}
+
+
+- COMPONENT Post
+----------------
+
+
+- COMPONENT CommentList --> List all the comments for a specific post
+-----------------------
+  - STATE
+  1 - CommentArrays
+
+  - ACTIONS
+  --> No actions
+
+- COMPONENT AddComment
+
+
+OTHERS
+------
+- Provider --> state
+- Routing
+- PropTypes --> installed
