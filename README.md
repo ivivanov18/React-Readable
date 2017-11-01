@@ -1,23 +1,22 @@
-# Readable API Server
+# READABLE UDACITY
 
-This is the starter project for the final assessment project for Udacity's Redux course where you will build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
+This is the second project of the UDACITY React Nano Degree Program.
 
-This repository includes the code for the backend API Server that you'll use to develop and interact with the front-end portion of the project.
+## Aim
+Show the understanding of the use of Redux to manage the state in a React application
 
-## Start Developing
+## Description
+The application is called Readable and lets the user manage a list of post and the according comments. The user can:
+- Add new post, edit existing posts, delete posts, up vote or down vote a post
+- Add a new comment for a given post, edit existing comments, delete comments, up vote or down vote a comment
+- Filter the posts according to the existing categories
+- Sort posts by date (descending) or by vote score (descending)
+- Sort comments by date (descending) or by vote score (descending)
 
-To get started developing right away:
-
-* Install and start the API server
-    - `cd api-server`
-    - `npm install`
-    - `node server`
-* In another terminal window, use Create React App to scaffold out the front-end
-    - `create-react-app frontend`
-    - `cd frontend`
-    - `npm start`
-
-## API Server
-
-Information about the API server and how to use it can be found in its [README file](api-server/README.md).
-#ReactNanoDegree-Readable
+## Install
+You can use locally on the computer the following way:
+- clone the project: git clone https://github.com/ivivanov18/ReactNanoDegree-Readable.git
+- Install the dependencies by running the command: `npm install` in both folders (frontend and api-server)
+- To start and use the app:
+    - Run the command `node server` in the `api-server`folder
+    - Run the command `npm start` in the `frontend`folder
