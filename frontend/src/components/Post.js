@@ -1,6 +1,18 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+/**
+ * @description Functional component represents a post
+ * @param {string} title - the title of the post
+ * @param {string} body - the main text of the post
+ * @param {string} author - the author of the post
+ * @param {string} category - the category of the post
+ * @param {number} voteScore - the result of the up votes (+1) and down votes (-1)
+ * @param {string} id - the unique id of the post
+ * @param {function} onClickDeleteButton - tells the component what to do when deleted clicked
+ * @param {function} onClickUpVoteButton - tells the component what to do when up vote clicked
+ * @param {function} onClickDownVoteButton - tells the component what to do when down vote clicked
+ */
 const Post = ({
     title,
     body,

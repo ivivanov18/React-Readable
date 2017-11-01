@@ -2,8 +2,17 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 /**
- * 
- * @param {*} param0 
+ * @description Function component represents a comment
+ * @param {string} id - the unique id of the comment
+ * @param {string} parentId - the unique id of the post to which the comment refers to
+ * @param {string} body - the text of the comment
+ * @param {string} author - the author of the comment
+ * @param {number} voteScore - the result of the up votes (+1) and down votes (-1)
+ * @param {boolean} deleted - flag to tell deleted
+ * @param {boolean} parentDeleted - flag to tell the post refered to is deleted
+ * @param {function} onClickDeleteButton - tells the component what to do when delete clicked
+ * @param {function} onClickUpVoteButton - tells the component what to do when up vote clicked
+ * @param {function} onClickDownVoteButton - tells the component what to do when down vote clicekd
  */
 const Comment = ({
     id,

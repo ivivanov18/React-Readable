@@ -3,6 +3,9 @@ import {connect} from 'react-redux';
 import * as actions from '../actions';
 import * as ServerAPI from '../utils/ServerAPI';
 
+/**
+ * @description Component rendered when "Edit" is clicked on a comment
+ */
 class CommentEdit extends Component{
 
     constructor(props){
@@ -36,6 +39,7 @@ class CommentEdit extends Component{
         this.props.commentEdit(commentData);
         //this.props.history.push('/')
     }   
+
 
     handleChangeBody = (e) => {
         this.setState({

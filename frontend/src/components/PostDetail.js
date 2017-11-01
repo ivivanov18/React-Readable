@@ -6,14 +6,10 @@ import CommentList from './CommentList';
 import {connect} from 'react-redux';
 
 /**
- * Appears when clicked on Detail button from list
- * Full info on Post and comments for this post
- * <PostDetail>
- *  Info
- *  <CommentList/>
- *  <CommendAdd />
- * </PostDetail>
- * @param {*} param0 
+ * @description appears when clicked on post's title
+ * @description contains full info on given Post and comments for this post
+ * @description the component 
+ * @param {string} id - unique id of the post from link /:category/:id
  */
 class PostDetail extends Component{
 
@@ -24,7 +20,6 @@ class PostDetail extends Component{
             comments: [],
             sortBy: "byDate"
         }
-        this.id = this.findPost().id;
     }
 
     componentDidMount(){
@@ -32,12 +27,18 @@ class PostDetail extends Component{
             this.props.load_comments(comments);
         })
     }
-
+    /**
+     * @description Finds the given Post (all info) corresponding to the id passed in the link
+     */
     findPost = () => {
         return this.props.posts.find(post => 
             post.id === this.props.match.params.id);
     }
-
+    
+    /**
+     * @description checks the sorting criteria and returns the sorted array accordingly
+     * @returns {array} comments sorted (which are passed to the CommentList component)
+     */
     getComments = () => {
         if(this.state.sortBy === "byVoteScore")
             return this.props.comments.sort(function(commentA, commentB){
@@ -48,13 +49,19 @@ class PostDetail extends Component{
         })
     }
 
+    /**
+     * @description changes the sorting criteria
+     */
     sortByDateDesc = () => {
         this.setState({sortBy: "byDate"})
-      }
+    }
     
-      sortByNumberVoteDesc = () => {
+    /**
+     * @description changes the sorting criteria
+     */
+    sortByNumberVoteDesc = () => {
         this.setState({sortBy: "byVoteScore"})
-      }
+    }
     
 
     render(){
@@ -97,10 +104,8 @@ class PostDetail extends Component{
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    
-    load_comments: (data) => dispatch(actions.comment_load_all(data)),
-    
+const mapDispatchToProps = dispatch => ({ 
+    load_comments: (data) => dispatch(actions.comment_load_all(data)),  
 });
 
 const mapStateToProps = ({posts, comments}) => ({

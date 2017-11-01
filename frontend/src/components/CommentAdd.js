@@ -3,15 +3,16 @@ import {connect} from 'react-redux';
 import * as ServerAPI from '../utils/ServerAPI';
 import * as actions from '../actions';
 
-
+/**
+ * @description Component rendered when "Add Comment" is clicked
+ */
 class CommentAdd extends Component{
-    constructor(props){
-        super(props);
-        this.nextId = 212434;
-        //this.categoryPostParent = this.props.match.params.category
-        console.log("this.categoryPostParent:", this.categoryPostParent)
-    }
 
+    /**
+     * @description Function called when "Submit" button is clicked
+     * @description checks for blanks, gathers data, dispatches actions & creates post on backend
+     * @param {event} 
+     */
     submitComment = (e) => {
         e.preventDefault();
         
@@ -31,10 +32,7 @@ class CommentAdd extends Component{
             parentId: this.props.match.params.postId
             
         }
-        ServerAPI.addComment(commentData);        
-        this.props.createComment(commentData);
-        //this.props.history.push(`/${this.categoryPostParent}/${commentData.parentId}`)
-        this.props.history.push('/')
+        this.props.createComment(commentData, () => this.props.history.push('/'));
     }
 
 
@@ -60,7 +58,11 @@ class CommentAdd extends Component{
 }
 
 const mapPropsToDispatch = dispatch => ({
-    createComment: (data) => dispatch(actions.comment_add(data))    
+    createComment: (data, callback) => (
+        ServerAPI.addComment(data).
+        then((comment) => dispatch(actions.comment_add(comment))).
+        then(() => callback())
+    )
 });
 
 export default connect(null, mapPropsToDispatch)(CommentAdd);

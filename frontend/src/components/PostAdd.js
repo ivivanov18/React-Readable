@@ -3,13 +3,16 @@ import {connect} from 'react-redux';
 import * as actions from '../actions';
 import * as ServerAPI from '../utils/ServerAPI';
 
+/**
+ * @description Component rendered when "New Post" is clicked on the main page
+ * @description Renders a form to enter main info on post (title, body, author, category)
+ */
 class PostAdd extends Component{
-    
-    constructor(props){
-        super(props);
-        this.nextId = 1230;
-    }
 
+    /**
+     * @description Function called when "Submit" button is clicked
+     * @description checks for blanks, gathers data, dispatches actions & creates post on backend
+     */
     submitPost = (e) => {
         
         e.preventDefault();
