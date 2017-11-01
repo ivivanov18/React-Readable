@@ -3,47 +3,41 @@ import {connect} from 'react-redux';
 import * as actions from '../actions';
 import * as ServerAPI from '../utils/ServerAPI';
 
-class PostEdit extends Component{
+class CommentEdit extends Component{
 
     constructor(props){
         super(props);
         this.state = {
             id: this.props.id,
-            title: [],
             body: []
         }
-        console.log("CONSTRUCTOR POSTT ");
+        console.log("CONSTRUCTOR COMMENT EDIT");
     }
 
     componentDidMount(){
-        let post = this.props.posts.find(post => post.id === this.state.id)
+        let comment = this.props.comments.find(comment => comment.id === this.state.id)
 
         this.setState({
-            title: post.title,
-            body: post.body
+            body: comment.body
         })
+
     }
 
-    submitPost = (e) => {
+    submitComment = (e) => {
 
         e.preventDefault();
 
-        const postData = {
+        const commentData = {
             id: this.props.id,
-            title: e.target.title.value,
-            body: e.target.body.value
+            body: e.target.body.value,
+            timestamp: Date.now()
         }
-        console.log("Post DATA: ", postData);
-        this.props.postEdit(postData);
-        ServerAPI.updatePost(postData.id, postData.title, postData.body);
+        console.log("DATA: ", commentData)
+
+        ServerAPI.updateComment(commentData.id, commentData.body, commentData.timestamp);        
+        this.props.commentEdit(commentData);
         //this.props.history.push('/')
     }   
-
-    handleChangeTitle = (e) => {
-        this.setState({
-            title: e.target.value
-        })
-    }
 
     handleChangeBody = (e) => {
         this.setState({
@@ -63,16 +57,8 @@ class PostEdit extends Component{
                         </div>
                     </div>
                     <div className="col-10">
-                        <form onSubmit={this.submitPost}>
-                            <h2>Edit Post</h2>
-                                <div className="form-group">
-                                    <label className="col-form-label">Title</label>
-                                    <input  type="text" 
-                                            className="form-control" 
-                                            name="title"
-                                            value={this.state.title}
-                                            onChange={this.handleChangeTitle}/>
-                                </div>
+                        <form onSubmit={this.submitComment}>
+                            <h2>Edit Comment</h2>
                                 <div className="form-group">
                                     <label className="col-form-label">Say what is on your mind</label>
                                     <input  type="textarea" 
@@ -92,16 +78,16 @@ class PostEdit extends Component{
     }
 }
 
-const mapStateToProps = ({posts}) => {
+const mapStateToProps = ({comments}) => {
     return {
-        posts
+        comments
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        postEdit: (data) => dispatch(actions.post_edit(data))        
+        commentEdit: (data) => dispatch(actions.comment_edit(data))        
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(CommentEdit);

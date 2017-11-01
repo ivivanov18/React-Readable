@@ -11,7 +11,8 @@ const CommentList = ({
     return (comments === null || comments === undefined) 
     ? <div></div>
     : 
-    <ul>
+    <div className="container">
+        <h5>Number of comments: {comments.length}</h5><br/>
         {comments.map(comment =>
             <Comment key={comment.id} 
                     {...comment} 
@@ -19,7 +20,7 @@ const CommentList = ({
                     onClickUpVoteButton={onClickUpVoteButton}
                     onClickDownVoteButton={onClickDownVoteButton}/>
         )}
-    </ul>
+    </div>
 
 }
 

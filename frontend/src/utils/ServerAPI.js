@@ -42,6 +42,14 @@ export const deletePost = (postId) => {
   }).then(res => res.json())
 }
 
+export const updatePost = (postId, title, bodyPost) => {
+  return fetch(`${api}/posts/${postId}`, {
+    method: 'PUT',
+    headers: headers,
+    body: JSON.stringify({title: title, body: bodyPost})
+  }).then(res => console.log(res.json()))
+}
+
 /////////////////////CATEGORIES/////////////////////  
 export const getAllCategories = () => 
   fetch(`${api}/categories`, { headers })
@@ -75,5 +83,17 @@ export const deleteComment = (commentId) => {
   return fetch(`${api}/comments/${commentId}`, {
     method: 'DELETE',
     headers: headers
+  }).then(res => res.json())
+}
+
+export const updateComment = (commentId, bodyPost, timestampPost) => {
+  console.log("COMMENT ID: ", commentId)
+  console.log("timestampPost: ", timestampPost)
+  console.log("bodyPost: ", bodyPost)
+  console.log("JSON: ", JSON.stringify({timestamp: timestampPost, body: bodyPost}))
+  return fetch(`${api}/comments/${commentId}`, {
+    method: 'PUT',
+    headers: headers,
+    body: JSON.stringify({timestamp: timestampPost, body: bodyPost})
   }).then(res => res.json())
 }

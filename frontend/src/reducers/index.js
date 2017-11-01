@@ -105,12 +105,14 @@ const comments = (state = [], action) => {
         }
       ]
     case COMMENT_EDIT:
+      
       return state.map(comment => {
-        if(comment.id !== action.id)
+        if(comment.id !== action.id){
           return comment
+        }
         return {
           ...comment,
-          title: action.title,
+          timestamp: action.timestamp,
           body: action.body
         }
       });

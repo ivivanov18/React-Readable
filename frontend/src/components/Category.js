@@ -11,7 +11,7 @@ const Category = ({
     if(category.name === currentCategoryFiltered){
         return  <Link   key={category.name} 
                         to={`/${category.path}`}
-                        class="list-group-item list-group-item-action active" 
+                        className="list-group-item list-group-item-action active" 
                         onClick={onClick}>
                         {category.name}
                 </Link>

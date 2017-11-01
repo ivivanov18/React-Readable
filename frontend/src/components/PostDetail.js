@@ -3,12 +3,7 @@ import * as actions from '../actions';
 import * as ServerAPI from '../utils/ServerAPI';
 import Post from './Post';
 import CommentList from './CommentList';
-import CommentAdd from './CommentAdd';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-
-
-
 
 /**
  * Appears when clicked on Detail button from list
@@ -40,6 +35,7 @@ class PostDetail extends Component{
     }
 
     findPost = () => {
+        console.log("PROPS: ", this.props.posts)
         return this.props.posts.find(post => 
             post.id === this.props.match.params.id);
     }
@@ -47,16 +43,16 @@ class PostDetail extends Component{
 
     render(){
         return(
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="list-group">
-                            <a href="/" class="list-group-item list-group-item-action">
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <div className="list-group">
+                            <a href="/" className="list-group-item list-group-item-action">
                                 Back
                             </a>
                         </div>
                     </div>
-                    <div class="col-10">
+                    <div className="col-10">
                         <Post {...this.findPost()}
                             onClickDeleteButton={this.props.onClickPostDeleteButton}
                             onClickUpVoteButton={this.props.onClickPostUpVoteButton}
@@ -68,8 +64,6 @@ class PostDetail extends Component{
                             onClickDownVoteButton={this.props.onClickCommentDownVoteButton}
                             onClickUpVoteButton={this.props.onClickCommentUpVoteButton}
                         />
-                        <br/>
-                        <CommentAdd postParentId={this.id}/>
                     </div>
                 </div>
             </div>

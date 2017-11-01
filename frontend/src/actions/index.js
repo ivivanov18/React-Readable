@@ -43,7 +43,7 @@ export function post_add({title, body, author, category, id, timestamp, deleted,
     }
 }
 
-export function post_edit({title, body, author, category}){
+export function post_edit({title, body}){
     return {
         type: POST_EDIT,
         title,
@@ -116,7 +116,17 @@ export function comment_down_vote({id}){
     }
 }
 
+export function comment_edit({id, timestamp, body}){
+    console.log("ACTION: ", body)
+    console.log("ACTION: ", timestamp)
+    return {
+        type: COMMENT_EDIT,
+        id,
+        timestamp,
+        body
+    }
 
+}
 /////////////////////CATEGORIES///////////////////////
 export function category_load_all(categories){
     return {

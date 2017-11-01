@@ -11,10 +11,18 @@ class PostAdd extends Component{
     }
 
     submitPost = (e) => {
+        
         e.preventDefault();
         
+        if(e.target.title.value === "" || 
+            e.target.body.value === "" || 
+            e.target.author.value === ""){
+                alert("Every field is mandatory!")
+                return
+            }
+            
         const postData = {
-            id: (++this.nextId).toString(),
+            id: (Math.floor((Math.random() * 1000000) + 1)).toString(),
             title: e.target.title.value,
             body: e.target.body.value,
             author: e.target.author.value,
@@ -22,9 +30,11 @@ class PostAdd extends Component{
             timestamp: Date.now(),
             voteScore: 0
         }
-
-        this.props.createPost(postData);
+        
         ServerAPI.addPost(postData);
+        this.props.createPost(postData);
+        this.props.history.push('/')
+        
     }
 
 
@@ -35,32 +45,32 @@ class PostAdd extends Component{
 
         return (
 
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="list-group">
-                            <a href="/" class="list-group-item list-group-item-action">
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <div className="list-group">
+                            <a href="/" className="list-group-item list-group-item-action">
                                 Back
                             </a>
                         </div>
                     </div>
-                    <div class="col-10">
+                    <div className="col-10">
                         <form onSubmit={this.submitPost}>
                             <h2>New Post</h2>
-                                <div class="form-group">
-                                    <label class="col-form-label">Title</label>
-                                    <input type="text" class="form-control" name="title"/>
+                                <div className="form-group">
+                                    <label className="col-form-label">Title</label>
+                                    <input type="text" className="form-control" name="title"/>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-form-label">Say what is on your mind</label>
-                                    <input type="textarea" class="form-control" name="body"/>
+                                <div className="form-group">
+                                    <label className="col-form-label">Say what is on your mind</label>
+                                    <input type="textarea" className="form-control" name="body"/>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="text" class="form-control" name="author" placeholder="Author"/>
+                                <div className="row">
+                                    <div className="col">
+                                        <input type="text" className="form-control" name="author" placeholder="Author"/>
                                     </div>
-                                    <div class="col">    
-                                        <select name="category" class="custom-select">
+                                    <div className="col">    
+                                        <select name="category" className="custom-select">
                                             {this.props.categories && this.props.categories.categories.map((category) => (
                                                 <option key={category.name} value={category.name}>{category.name}</option>
                                             ))}
@@ -68,7 +78,7 @@ class PostAdd extends Component{
                                     </div>
                                 </div>
                                 <br/>
-                                <button class="btn btn-primary">Submit</button>
+                                <button className="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>

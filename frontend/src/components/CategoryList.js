@@ -6,7 +6,7 @@ const CategoryList = ({
     onCategoryClick,
     currentCategoryFilter
  }) => (
-    <div class="list-group">
+    <div className="list-group">
         <Category   key={"all"}
                     category={{"name":"all", "path":""}}
                     currentCategoryFiltered={currentCategoryFilter}

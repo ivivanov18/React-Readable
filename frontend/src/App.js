@@ -7,6 +7,9 @@ import PostList from './components/PostList';
 import CategoryList from './components/CategoryList';
 import PostAdd from './components/PostAdd';
 import PostDetail from './components/PostDetail';
+import PostEdit from './components/PostEdit';
+import CommentEdit from './components/CommentEdit';
+import CommentAdd from './components/CommentAdd';
 import {Route, Switch, withRouter} from 'react-router-dom';
 
 /**
@@ -79,24 +82,33 @@ class App extends Component {
       return <div></div>
     }
     return (
-      <div className="App" class="container">
+      <div className="container">
           <Switch>
             <Route exact path="/" render={() => (
               <div>
-                <div class="row">
-                    <div class="col">
+                <div className="row">
+                    <div className="col">
                       <CategoryList 
                         categories={this.props.categories}
                         onCategoryClick={this.props.onClickCategoryFilter}
                         currentCategoryFilter={this.props.categoryFilter}/>
                       <br/>
-                      <div class="list-group">
+                      <div className="list-group">
                         <a  href="/create/post"
-                            class="list-group-item list-group-item-action">New Post
+                            className="list-group-item list-group-item-action">New Post
+                        </a>
+                      </div>
+                      <br/>
+                      <div className="list-group">
+                        <a  href="#"
+                            className="list-group-item list-group-item-action">Sort By Date
+                        </a>                        
+                        <a  href="#"
+                            className="list-group-item list-group-item-action">Sort By Votes
                         </a>
                       </div>
                     </div>
-                    <div class="col-10">
+                    <div className="col-10">
                       <PostList 
                         posts={this.getVisiblePosts()}
                         onClickDeleteButton={this.deletePost}
@@ -107,20 +119,20 @@ class App extends Component {
                 </div>
             )}/>
             <Route exact path="/:category" render={() => (
-              <div class="row">
-                <div class="col">
+              <div className="row">
+                <div className="col">
                   <CategoryList 
                     categories={this.props.categories}
                     onCategoryClick={this.props.onClickCategoryFilter}
                     currentCategoryFilter={this.props.categoryFilter}/>
                   <br/>
-                  <div class="list-group">
+                  <div className="list-group">
                     <a  href="/create/post"
-                        class="list-group-item list-group-item-action">New Post
+                        className="list-group-item list-group-item-action">New Post
                     </a>
                   </div>
                 </div>
-                <div class="col-10">
+                <div className="col-10">
                   <PostList 
                     posts={this.getVisiblePosts()}
                     onClickDeleteButton={this.deletePost}
@@ -130,7 +142,7 @@ class App extends Component {
               </div>
             )}/>
             <Route path="/create/post" component={PostAdd}/>
-            <Route path="/:category/:id" render={(props) => 
+            <Route exact path="/:category/:id" render={(props) => 
               <PostDetail
                 {...props}
                 id={props.match.params.id}
@@ -141,6 +153,13 @@ class App extends Component {
                 onClickCommentUpVoteButton={this.upVoteComment}
                 onClickCommentDownVoteButton={this.downVoteComment}/>
               }/>
+            <Route exact path="/comments/:id/edit" render={(props) =>
+              <CommentEdit {...props} id={props.match.params.id}/>
+            }/>
+            <Route exact path="/:category/:id/edit" render={(props) =>
+              <PostEdit {...props} id={props.match.params.id}/>
+            }/>
+            <Route exact path="/:category/:postId/comment" component={CommentAdd}/>
           </Switch>
       </div>
     );

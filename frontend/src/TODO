@@ -1,14 +1,3 @@
-X BrowserRouter - Link - Router
-X Clear fields when Post created
-X Add Comment --> parentID
-X Edit Post
-X Add Link on title to go to PostDetail detail with comments --> Added but does not work
-X Check when creating post that fields are not blank
 X Sort function by date added and vote Score
-X PostDetail does not work when clicked must be refreshed F5!!
-X Number of Comments on post detail
-V Same for upvote and downvote post
-
-
 
 
