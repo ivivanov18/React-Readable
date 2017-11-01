@@ -47,7 +47,7 @@ export const updatePost = (postId, title, bodyPost) => {
     method: 'PUT',
     headers: headers,
     body: JSON.stringify({title: title, body: bodyPost})
-  }).then(res => console.log(res.json()))
+  }).then(res => res.json())
 }
 
 /////////////////////CATEGORIES/////////////////////  
@@ -87,10 +87,6 @@ export const deleteComment = (commentId) => {
 }
 
 export const updateComment = (commentId, bodyPost, timestampPost) => {
-  console.log("COMMENT ID: ", commentId)
-  console.log("timestampPost: ", timestampPost)
-  console.log("bodyPost: ", bodyPost)
-  console.log("JSON: ", JSON.stringify({timestamp: timestampPost, body: bodyPost}))
   return fetch(`${api}/comments/${commentId}`, {
     method: 'PUT',
     headers: headers,

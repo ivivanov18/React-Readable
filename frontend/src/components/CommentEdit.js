@@ -11,7 +11,6 @@ class CommentEdit extends Component{
             id: this.props.id,
             body: []
         }
-        console.log("CONSTRUCTOR COMMENT EDIT");
     }
 
     componentDidMount(){
@@ -32,7 +31,6 @@ class CommentEdit extends Component{
             body: e.target.body.value,
             timestamp: Date.now()
         }
-        console.log("DATA: ", commentData)
 
         ServerAPI.updateComment(commentData.id, commentData.body, commentData.timestamp);        
         this.props.commentEdit(commentData);

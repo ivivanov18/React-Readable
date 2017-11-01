@@ -12,7 +12,6 @@ class PostEdit extends Component{
             title: [],
             body: []
         }
-        console.log("CONSTRUCTOR POSTT ");
     }
 
     componentDidMount(){
@@ -33,7 +32,6 @@ class PostEdit extends Component{
             title: e.target.title.value,
             body: e.target.body.value
         }
-        console.log("Post DATA: ", postData);
         this.props.postEdit(postData);
         ServerAPI.updatePost(postData.id, postData.title, postData.body);
         //this.props.history.push('/')

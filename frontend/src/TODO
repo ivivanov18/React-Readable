@@ -1,3 +1,5 @@
-X Sort function by date added and vote Score
-
+X Sort function by date added and vote Score for Comments
+X history.push not working correctly --> can see two posts or two comments for some time (after refressh OK)
+X make post inacessible
+X delete --> history.push
 

@@ -25,6 +25,11 @@ class App extends Component {
       this.props.load_posts(posts);
     });
     
+    this.state = {
+      sortBy: "byDate",
+      posts: []
+    }
+
     ServerAPI.getAllCategories().then((categories) => {
       this.props.load_categories(categories)
     })
@@ -35,11 +40,29 @@ class App extends Component {
    */
   getVisiblePosts = () => {
     if(this.props.categoryFilter === 'SHOW_ALL_CATEGORY'){
-      return this.props.posts;
+      if(this.state.sortBy === "byVoteScore"){
+        return this.props.posts.sort(function(postA, postB){
+            return postB.voteScore - postA.voteScore
+          });
+      }else{
+        return this.props.posts.sort(function(postA, postB){
+          return postB.timestamp - postA.timestamp
+        });
+      }
     }
-    return this.props.posts.filter(post => 
-      post.category === this.props.categoryFilter
-    );
+    if(this.state.sortBy === "byVoteScore"){
+      return this.props.posts.filter(post => 
+        post.category === this.props.categoryFilter
+      ).sort(function(postA, postB){
+        return postB.voteScore - postA.voteScore
+      });
+    }else{
+      return this.props.posts.filter(post => 
+        post.category === this.props.categoryFilter
+      ).sort(function(postA, postB){
+        return postB.timestamp - postA.timestamp
+      });
+    }
   }
 
   upVotePost = (data) => {
@@ -73,6 +96,15 @@ class App extends Component {
     ServerAPI.deleteComment(data.id);
   }
 
+  sortByDateDesc = () => {
+    this.setState({sortBy: "byDate"})
+  }
+
+  sortByNumberVoteDesc = () => {
+    this.setState({sortBy: "byVoteScore"})
+  }
+
+
 
   /**
    * 
@@ -100,12 +132,14 @@ class App extends Component {
                       </div>
                       <br/>
                       <div className="list-group">
-                        <a  href="#"
-                            className="list-group-item list-group-item-action">Sort By Date
-                        </a>                        
-                        <a  href="#"
-                            className="list-group-item list-group-item-action">Sort By Votes
-                        </a>
+                        <button
+                            className="btn btn-outline-primary"
+                            onClick={() => this.sortByDateDesc()}>Sort by Date
+                        </button>                        
+                        <button
+                            className="btn btn-outline-primary"
+                            onClick={() => this.sortByNumberVoteDesc()}>Sort by Votes
+                        </button>
                       </div>
                     </div>
                     <div className="col-10">
@@ -196,7 +230,4 @@ const mapStateToProps = ({posts, comments, categories, categoryFilter}) => {
   }
 }
 
-/*App.contextTypes = {
-  store: PropTypes.object
-}*/
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

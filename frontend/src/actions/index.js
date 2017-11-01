@@ -117,8 +117,6 @@ export function comment_down_vote({id}){
 }
 
 export function comment_edit({id, timestamp, body}){
-    console.log("ACTION: ", body)
-    console.log("ACTION: ", timestamp)
     return {
         type: COMMENT_EDIT,
         id,

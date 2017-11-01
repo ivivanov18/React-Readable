@@ -21,7 +21,8 @@ class PostDetail extends Component{
         super(props);
         
         this.state = {
-            comments: []
+            comments: [],
+            sortBy: "byDate"
         }
         this.id = this.findPost().id;
     }
@@ -29,17 +30,32 @@ class PostDetail extends Component{
     componentDidMount(){
         ServerAPI.getAllCommentsByPost(this.props.match.params.id).then((comments) => {
             this.props.load_comments(comments);
-            //this.setState({comments: comments});
         })
-
     }
 
     findPost = () => {
-        console.log("PROPS: ", this.props.posts)
         return this.props.posts.find(post => 
             post.id === this.props.match.params.id);
     }
 
+    getComments = () => {
+        if(this.state.sortBy === "byVoteScore")
+            return this.props.comments.sort(function(commentA, commentB){
+                return commentB.voteScore - commentA.voteScore
+            })
+        return this.props.comments.sort(function(commentA, commentB){
+            return commentB.timestamp - commentA.timestamp
+        })
+    }
+
+    sortByDateDesc = () => {
+        this.setState({sortBy: "byDate"})
+      }
+    
+      sortByNumberVoteDesc = () => {
+        this.setState({sortBy: "byVoteScore"})
+      }
+    
 
     render(){
         return(
@@ -50,7 +66,17 @@ class PostDetail extends Component{
                             <a href="/" className="list-group-item list-group-item-action">
                                 Back
                             </a>
-                        </div>
+                        </div><br/>
+                        <div className="list-group">
+                        <button
+                            className="btn btn-outline-primary"
+                            onClick={() => this.sortByDateDesc()}>Sort by Date
+                        </button>                        
+                        <button
+                            className="btn btn-outline-primary"
+                            onClick={() => this.sortByNumberVoteDesc()}>Sort by Votes
+                        </button>
+                      </div>
                     </div>
                     <div className="col-10">
                         <Post {...this.findPost()}
@@ -59,7 +85,7 @@ class PostDetail extends Component{
                             onClickDownVoteButton={this.props.onClickPostDownVoteButton}/>
                         <br/>
                         <CommentList 
-                            comments={this.props.comments}
+                            comments={this.getComments()}
                             onClickDeleteButton={this.props.onClickCommentDeleteButton}
                             onClickDownVoteButton={this.props.onClickCommentDownVoteButton}
                             onClickUpVoteButton={this.props.onClickCommentUpVoteButton}
