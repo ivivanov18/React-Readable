@@ -32,7 +32,7 @@ class PostDetail extends Component{
      */
     findPost = () => {
         return this.props.posts.find(post => 
-            post.id === this.props.match.params.id);
+            post.id === this.props.match.params.id) ;
     }
     
     /**
@@ -65,7 +65,8 @@ class PostDetail extends Component{
     
 
     render(){
-        return(
+        if(this.findPost() === undefined || this.findPost() === null){
+            return (
             <div className="container">
                 <div className="row">
                     <div className="col">
@@ -73,33 +74,53 @@ class PostDetail extends Component{
                             <a href="/" className="list-group-item list-group-item-action">
                                 Back
                             </a>
-                        </div><br/>
-                        <div className="list-group">
-                        <button
-                            className="btn btn-outline-primary"
-                            onClick={() => this.sortByDateDesc()}>Sort by Date
-                        </button>                        
-                        <button
-                            className="btn btn-outline-primary"
-                            onClick={() => this.sortByNumberVoteDesc()}>Sort by Votes
-                        </button>
-                      </div>
+                        </div>
                     </div>
+
                     <div className="col-10">
-                        <Post {...this.findPost()}
-                            onClickDeleteButton={this.props.onClickPostDeleteButton}
-                            onClickUpVoteButton={this.props.onClickPostUpVoteButton}
-                            onClickDownVoteButton={this.props.onClickPostDownVoteButton}/>
-                        <br/>
-                        <CommentList 
-                            comments={this.getComments()}
-                            onClickDeleteButton={this.props.onClickCommentDeleteButton}
-                            onClickDownVoteButton={this.props.onClickCommentDownVoteButton}
-                            onClickUpVoteButton={this.props.onClickCommentUpVoteButton}
-                        />
+                        <div class="alert alert-danger" role="alert">
+                            Post not Found
+                        </div>
                     </div>
                 </div>
             </div>
+            )
+        }
+        return(
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <div className="list-group">
+                                <a href="/" className="list-group-item list-group-item-action">
+                                    Back
+                                </a>
+                            </div><br/>
+                            <div className="list-group">
+                            <button
+                                className="btn btn-outline-primary"
+                                onClick={() => this.sortByDateDesc()}>Sort by Date
+                            </button>                        
+                            <button
+                                className="btn btn-outline-primary"
+                                onClick={() => this.sortByNumberVoteDesc()}>Sort by Votes
+                            </button>
+                        </div>
+                        </div>
+                        <div className="col-10">
+                            <Post {...this.findPost()}
+                                onClickDeleteButton={this.props.onClickPostDeleteButton}
+                                onClickUpVoteButton={this.props.onClickPostUpVoteButton}
+                                onClickDownVoteButton={this.props.onClickPostDownVoteButton}/>
+                            <br/>
+                            <CommentList 
+                                comments={this.getComments()}
+                                onClickDeleteButton={this.props.onClickCommentDeleteButton}
+                                onClickDownVoteButton={this.props.onClickCommentDownVoteButton}
+                                onClickUpVoteButton={this.props.onClickCommentUpVoteButton}
+                            />
+                        </div>
+                    </div>
+                </div>
         );
     }
 }
