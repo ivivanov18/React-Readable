@@ -78,6 +78,7 @@ class App extends Component {
   deletePost = (data) => {
     this.props.onClickDeletePost(data);
     ServerAPI.deletePost(data.id);
+    this.props.history.push('/')
   }
 
   //////////COMMENTS///////////
