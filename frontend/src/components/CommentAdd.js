@@ -57,12 +57,13 @@ class CommentAdd extends Component{
     }
 }
 
-const mapPropsToDispatch = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     createComment: (data, callback) => (
         ServerAPI.addComment(data).
-        then((comment) => dispatch(actions.comment_add(comment))).
+        then((comment) => 
+            dispatch(actions.comment_add(comment))).
         then(() => callback())
     )
 });
 
-export default connect(null, mapPropsToDispatch)(CommentAdd);
+export default connect(null, mapDispatchToProps)(CommentAdd);

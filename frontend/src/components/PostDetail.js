@@ -27,6 +27,10 @@ class PostDetail extends Component{
             this.props.load_comments(comments);
         })
     }
+
+    componentWillReceiveProps(nextProps){
+        
+    }
     /**
      * @description Finds the given Post (all info) corresponding to the id passed in the link
      */
@@ -78,7 +82,7 @@ class PostDetail extends Component{
                     </div>
 
                     <div className="col-10">
-                        <div class="alert alert-danger" role="alert">
+                        <div className="alert alert-danger" role="alert">
                             Post not Found
                         </div>
                     </div>

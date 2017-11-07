@@ -81,17 +81,17 @@ export function comment_load_all(comments){
     }
 }
 
-export function comment_add({title, body, author, id, timestamp, deleted, voteScore, parentDeleted}){
+export function comment_add({ body, author, id, timestamp, deleted, voteScore, parentDeleted, parentId}){
     return {
         type: COMMENT_ADD,
         id,
         timestamp,
-        title,
         body,
         author,
         deleted,
         voteScore,
-        parentDeleted
+        parentDeleted,
+        parentId
     }
 }
 

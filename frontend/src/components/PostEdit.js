@@ -34,7 +34,7 @@ class PostEdit extends Component{
         }
         this.props.postEdit(postData);
         ServerAPI.updatePost(postData.id, postData.title, postData.body);
-        //this.props.history.push('/')
+        this.props.history.push('/')
     }   
 
     handleChangeTitle = (e) => {

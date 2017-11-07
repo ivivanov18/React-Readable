@@ -82,26 +82,20 @@ const posts = (state = null, action) => {
 const comments = (state = [], action) => {
   switch(action.type){
     case COMMENT_LOAD_ALL:
-      if(state === null || state === undefined)
-        return action.comments 
-      else{
-        return [
-          ...state,
-          ...action.comments
-        ];
-      }
+      return [...action.comments]
+
     case COMMENT_ADD:
       return [
         ...state,
         {
           id: action.id,
-          title: action.title,
           body: action.body,
           deleted: action.deleted,
           parentDeleted: action.deleted,
           voteScore: action.voteScore,
           author: action.author,
-          timestamp: action.timestamp
+          timestamp: action.timestamp,
+          parentId: action.parentId
         }
       ]
     case COMMENT_EDIT:

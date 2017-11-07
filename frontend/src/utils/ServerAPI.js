@@ -64,12 +64,13 @@ export const getAllCommentsByPost = (postId) =>
     .then(data => data)
 
 
-export const addComment = (comment) => 
-  fetch(`${api}/comments`, {
+export const addComment = (comment) => {
+  return fetch(`${api}/comments`, {
           method: 'POST',
           headers: headers,
           body: JSON.stringify(comment)
-  })
+  }).then(res => res.json())
+}
 
 export const voteComment = (commentId, option) => {
   return fetch(`${api}/comments/${commentId}`, {
