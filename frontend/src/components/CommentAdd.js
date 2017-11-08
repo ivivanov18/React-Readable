@@ -33,6 +33,9 @@ class CommentAdd extends Component{
             
         }
         this.props.createComment(commentData, () => this.props.history.push('/'));
+        ServerAPI.getAllPosts().then((posts) => {
+            this.props.load_posts(posts);
+          });
     }
 
 
@@ -63,7 +66,9 @@ const mapDispatchToProps = dispatch => ({
         then((comment) => 
             dispatch(actions.comment_add(comment))).
         then(() => callback())
-    )
+    ),
+    load_posts: (data) => dispatch(actions.post_load_all(data)),
+    
 });
 
 export default connect(null, mapDispatchToProps)(CommentAdd);

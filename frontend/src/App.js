@@ -24,7 +24,7 @@ class App extends Component {
       this.setState({posts : posts});
       this.props.load_posts(posts);
     });
-    
+
     this.state = {
       sortBy: "byDate",
       posts: []

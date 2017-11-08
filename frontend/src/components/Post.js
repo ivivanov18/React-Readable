@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom';
  * @param {string} category - the category of the post
  * @param {number} voteScore - the result of the up votes (+1) and down votes (-1)
  * @param {string} id - the unique id of the post
+ * @param {number} commentCount - the number of comment for this post
  * @param {function} onClickDeleteButton - tells the component what to do when deleted clicked
  * @param {function} onClickUpVoteButton - tells the component what to do when up vote clicked
  * @param {function} onClickDownVoteButton - tells the component what to do when down vote clicked
@@ -20,6 +21,7 @@ const Post = ({
     category,
     voteScore,
     id,
+    commentCount,
     onClickDeleteButton,
     onClickUpVoteButton,
     onClickDownVoteButton
@@ -34,6 +36,7 @@ const Post = ({
             <p>
                 Vote score: {voteScore}<br/>
                 Category: {category}<br/>
+                Number of Comments: {commentCount}<br/>
                 From: {author}
             </p>
             <div className="btn-group" role="group" aria-label="Basic example">

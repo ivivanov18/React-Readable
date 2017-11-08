@@ -16,7 +16,9 @@ The application is called Readable and lets the user manage a list of post and t
 ## Install
 You can use locally on the computer the following way:
 - clone the project: git clone https://github.com/ivivanov18/ReactNanoDegree-Readable.git
-- Install the dependencies by running the command: `npm install` in both folders (frontend and api-server)
+- To install the dependencies run the command:
+    - `npm install` in the `frontend` folder
+    - `npm install` in the `api-server` folder 
 - To start and use the app:
     - Run the command `node server` in the `api-server`folder
-    - Run the command `npm start` in the `frontend`folder
+    - Run the command `npm start` in the `frontend`folder. The app can be used at `http://localhost:3000/`
