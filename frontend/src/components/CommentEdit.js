@@ -37,7 +37,7 @@ class CommentEdit extends Component{
 
         ServerAPI.updateComment(commentData.id, commentData.body, commentData.timestamp);        
         this.props.commentEdit(commentData);
-        //this.props.history.push('/')
+        this.props.history.push('/')
     }   
 
 

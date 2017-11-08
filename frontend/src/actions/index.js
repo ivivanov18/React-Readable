@@ -43,11 +43,12 @@ export function post_add({title, body, author, category, id, timestamp, deleted,
     }
 }
 
-export function post_edit({title, body}){
+export function post_edit({title, body, id}){
     return {
         type: POST_EDIT,
         title,
-        body
+        body,
+        id
     }
 }
 

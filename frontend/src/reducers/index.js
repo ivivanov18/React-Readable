@@ -99,7 +99,6 @@ const comments = (state = [], action) => {
         }
       ]
     case COMMENT_EDIT:
-      
       return state.map(comment => {
         if(comment.id !== action.id){
           return comment
